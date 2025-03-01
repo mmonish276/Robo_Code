@@ -52,15 +52,7 @@ class tankMotor:
         self.left_motor.close()   # Close the left motor
         self.right_motor.close()  # Close the right motor
 
-def pulse_turn(pwm_motor, direction="right", duration=0.2, speed=2000):
-    """Send a short pulse to turn the car."""
-    if direction == "right":
-        pwm_motor.setMotorModel(speed, -speed)  # Left motor forward, right motor backward (turn right)
-    else:
-        pwm_motor.setMotorModel(-speed, speed)  # Left motor backward, right motor forward (turn left)
-        
-    time.sleep(duration)  # Run for the specified duration
-    pwm_motor.setMotorModel(0, 0)  # Stop motors after pulse
+
 
 # Main program logic follows:
 if __name__ == '__main__':

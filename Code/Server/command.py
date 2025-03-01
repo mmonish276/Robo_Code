@@ -74,16 +74,19 @@ def check_error():
     #dist_error = dist_error - 1
     x = 0
 
-
-pwm_motor= tankMotor()
-
-
-
-            
+def pulse_turn(direction="right", duration=0.2, speed=2000):
+    pwm_motor= tankMotor()
+    """Send a short pulse to turn the car."""
+    if direction == "right":
+        pwm_motor.setMotorModel(speed, -speed)  # Left motor forward, right motor backward (turn right)
+    else:
+        pwm_motor.setMotorModel(-speed, speed)  # Left motor backward, right motor forward (turn left)
+        
+    time.sleep(duration)  # Run for the specified duration
+    pwm_motor.setMotorModel(0, 0)  # Stop motors after pulse
 
 
     
-
         
     
 
@@ -110,7 +113,7 @@ if __name__ == '__main__':
             PinchIn()
             RaiseArm()
             PinchOut()
-            pulse_turn(pwm_motor, "right", 0.1, 2000)
+            pulse_turn("right", 0.1, 2000)
 
 
             time.sleep(1)

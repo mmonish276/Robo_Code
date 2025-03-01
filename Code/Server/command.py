@@ -12,11 +12,11 @@ class Command:
         self.CMD_SONIC = "CMD_SONIC"
         self.CMD_MODE ="CMD_MODE"
     
-def Drive(leftSpeed, rightSpeed, time):
+def Drive(leftSpeed, rightSpeed):
     drive = tankMotor()
     drive.setMotorModel(leftSpeed, rightSpeed) 
     print("Car should be moving")
-    time.sleep(time)
+    time.sleep(1)
     
 def PinchIn():
     print('Pinching Servo In')  # Print a start message
@@ -63,9 +63,9 @@ if __name__ == '__main__':
             DropArm()
             PinchIn()
             RaiseArm()
-            Drive(-1000, -1000, 1)
+            Drive(-1000, -1000)
             PinchOut()
-            Drive(-1000, -1000, 5)
+            Drive(-1000, -1000)
             
     except KeyboardInterrupt:
         StopAll()

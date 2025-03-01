@@ -17,7 +17,7 @@ def test_Drive():
                 drive.setMotorModel(2000, 0) 
                 print("The car should be moving right")
                 time.sleep(2)
-                drive.setMotorMode1(0, 2000)
+                drive.setMotorModel(0, 2000)
                 time.sleep(4)
                 print("The car should be moving left")
     except KeyboardInterrupt:

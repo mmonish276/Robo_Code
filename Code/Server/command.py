@@ -13,7 +13,9 @@ class Command:
         self.CMD_ACTION = "CMD_ACTION"
         self.CMD_SONIC = "CMD_SONIC"
         self.CMD_MODE ="CMD_MODE"
-    
+
+
+
 def Drive(leftSpeed, rightSpeed):
     drive = tankMotor()
     drive.setMotorModel(leftSpeed, rightSpeed) 
@@ -45,7 +47,14 @@ def RaiseArm():
     servo = Servo()                    # Initialize the Servo instance
     servo.setServoAngle('1', 140)   # Set the angle for servo 1 to 140°
     time.sleep(1)           # Wait for 0.01 seconds
-   
+
+def Start():
+    servo = Servo()
+    drive = tankMotor()
+    drive.setMotorModel(0,0)
+    servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
+    servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
+
 def StopAll():
     servo = Servo()
     drive = tankMotor()
@@ -62,6 +71,7 @@ if __name__ == '__main__':
         exit()                                                   # Exit the program
     if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
         print("Running Command")
+        Start()
     try:
         #while 1:
         DropArm()

@@ -22,20 +22,28 @@ def test_Drive():
     time.sleep(2)
     print("The car should be moving left")
 
-def Pinch():
+def PinchIn():
     print('Pinching Servo')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
-    servo.setServoAngle('0', 140)  # Set servo 0 to angle i
+    servo.setServoAngle('0', 140)  # Set servo 0 to angle 140
     time.sleep(0.01)           # Wait for 0.01 seconds
-    
 
+def PinchOut():
+    print('Pinching Servo')  # Print a start message
+    servo = Servo()                    # Initialize the Servo instance
+    servo.setServoAngle('0', 90)  # Set servo 0 to angle 90
     time.sleep(0.01)           # Wait for 0.01 seconds
     
 def DropArm():
     print('Drop Arm')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
     servo.setServoAngle('1', 90)   # Set the angle for servo 1 to 90°
+    time.sleep(0.01)           # Wait for 0.01 seconds
 
+def RaiseArm():
+    print('Drop Arm')  # Print a start message
+    servo = Servo()                    # Initialize the Servo instance
+    servo.setServoAngle('1', 140)   # Set the angle for servo 1 to 140°
     time.sleep(0.01)           # Wait for 0.01 seconds
    
 def StopAll():
@@ -58,7 +66,9 @@ if __name__ == '__main__':
             #test_Drive()                                         # Drive
         while 1:
             DropArm()
-            Pinch()
+            PinchIn()
+            RaiseArm()
+            
     except KeyboardInterrupt:
         StopAll()
         

@@ -71,8 +71,8 @@ if __name__ == '__main__':
         PinchOut()
         Drive(-2000, 0)
 
-        for i in range(len(leftSpeeds)):
-            Drive(-leftSpeeds[i], -rightSpeeds[i])
+        for i in range(len(leftSpeeds) - 1, -1, -1):
+            Drive(-rightSpeeds[i], -leftSpeeds[i])
 
 
             

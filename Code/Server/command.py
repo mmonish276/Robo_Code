@@ -26,7 +26,7 @@ def PinchIn():
     print('Pinching Servo')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
     servo.setServoAngle('0', 140)  # Set servo 0 to angle 140
-    time.sleep(0.01)           # Wait for 0.01 seconds
+    time.sleep(1)           # Wait for 0.01 seconds
 
 def PinchOut():
     print('Pinching Servo')  # Print a start message
@@ -38,13 +38,13 @@ def DropArm():
     print('Drop Arm')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
     servo.setServoAngle('1', 90)   # Set the angle for servo 1 to 90°
-    time.sleep(0.01)           # Wait for 0.01 seconds
+    time.sleep(1)           # Wait for 0.01 seconds
 
 def RaiseArm():
-    print('Drop Arm')  # Print a start message
+    print('Raise Arm')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
     servo.setServoAngle('1', 140)   # Set the angle for servo 1 to 140°
-    time.sleep(0.01)           # Wait for 0.01 seconds
+    time.sleep(1)           # Wait for 0.01 seconds
    
 def StopAll():
     servo = Servo()

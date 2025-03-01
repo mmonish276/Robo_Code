@@ -25,7 +25,7 @@ def test_Drive():
 def Pinch():
     print('Pinching Servo')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
-    servo.setServoAngle('0', i)  # Set servo 0 to angle i
+    servo.setServoAngle('0', 140)  # Set servo 0 to angle i
     time.sleep(0.01)           # Wait for 0.01 seconds
     
 
@@ -42,8 +42,8 @@ def StopAll():
     servo = Servo()
     drive = tankMotor()
     drive.setMotorModel(0,0)
-    #servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
-    #servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
+    servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
+    servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
     print("\nEnd of program")          # Print an end message
 
 
@@ -56,8 +56,9 @@ if __name__ == '__main__':
         print("Running Command")
     try:
             #test_Drive()                                         # Drive
-        DropArm()
-        Pinch()
+        while 1:
+            DropArm()
+            Pinch()
     except KeyboardInterrupt:
         StopAll()
         

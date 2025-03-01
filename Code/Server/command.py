@@ -24,7 +24,11 @@ def Pinch():
     print('Pinching Servo')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
     #for i in range(90, 140, 1):     #(90, 140, 1)
-    servo.setServoAngle('0', 140)  # Set servo 0 to angle i
+    #servo.setServoAngle('0', 140)  # Set servo 0 to angle i
+
+    servo.setServoAngle('0', 150)  # Set the angle for servo 0 to 150°
+    
+
     time.sleep(0.01)           # Wait for 0.01 seconds
     
 def DropArm():
@@ -35,7 +39,10 @@ def DropArm():
     
     #for i in range(140, 90, -1): #(140, 90, -1)
         #print('i:', i)
-    servo.setServoAngle('1', 90)  # Set servo 1 to angle i
+    #servo.setServoAngle('1', 90)  # Set servo 1 to angle i
+
+    servo.setServoAngle('1', 90)   # Set the angle for servo 1 to 90°
+
     time.sleep(0.01)           # Wait for 0.01 seconds
    
 def StopAll():
@@ -49,7 +56,6 @@ def StopAll():
     print("\nEnd of program")          # Print an end message
 
 
-End = 0
 if __name__ == '__main__':
     import sys
     if len(sys.argv) < 2:
@@ -57,14 +63,14 @@ if __name__ == '__main__':
         exit()                                                   # Exit the program
     if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
         print("Running Command")
-        while End != 1:
-            test_Drive()                                         # Drive
+    try:
+        while 1:
+            #test_Drive()                                         # Drive
             DropArm()
             Pinch()
-            if (KeyboardInterrupt):
-                End = 1
-        # Ending Code
+    except KeyboardInterrupt:
         StopAll()
+        
        
 
           

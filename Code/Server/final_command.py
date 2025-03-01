@@ -1,10 +1,10 @@
 from motor import tankMotor              # Import the tankMotor class from the motor module
 from servo import Servo            # Import the Servo class from the servo module
 import time                              # Import the time module for sleep functionality
-import robo_vision                    #openCV vision code
 
 leftSpeeds = []
 rightSpeeds = []
+object_type=0 #initialized to neither resistor or cap.
 
 class Command:
     def __init__(self):
@@ -14,16 +14,17 @@ class Command:
         self.CMD_ACTION = "CMD_ACTION"
         self.CMD_SONIC = "CMD_SONIC"
         self.CMD_MODE ="CMD_MODE"
-
-
-
+    
+def get_Distance()
+    if object_type ==1
+    `   `
 def Drive(leftSpeed, rightSpeed):
     drive = tankMotor()
     drive.setMotorModel(leftSpeed, rightSpeed) 
     leftSpeeds.append(leftSpeed)
     rightSpeeds.append(rightSpeed)
     print("Car should be moving")
-    time.sleep(2)
+    time.sleep(1)
     
 def PinchIn():
     print('Pinching Servo In')  # Print a start message
@@ -48,14 +49,7 @@ def RaiseArm():
     servo = Servo()                    # Initialize the Servo instance
     servo.setServoAngle('1', 140)   # Set the angle for servo 1 to 140°
     time.sleep(1)           # Wait for 0.01 seconds
-
-def Start():
-    servo = Servo()
-    drive = tankMotor()
-    drive.setMotorModel(0,0)
-    servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
-    servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
-
+   
 def StopAll():
     servo = Servo()
     drive = tankMotor()
@@ -64,17 +58,6 @@ def StopAll():
     servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
     print("\nEnd of program")          # Print an end message
 
-def goto_obj(obj_type, distance, obj_count):          #will use 1st obj seen
-    retreived=0
-    while (retreived < obj_count):
-        if(distance >= 30):             #30cm away or more 
-            
-
-
-    
-
-        
-    
 
 if __name__ == '__main__':
     import sys
@@ -83,22 +66,17 @@ if __name__ == '__main__':
         exit()                                                   # Exit the program
     if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
         print("Running Command")
-        Start()
     try:
         #while 1:
         DropArm()
         PinchIn()
         RaiseArm()
         Drive(-1000, -1000)
-        Drive(-1000, 1000)
         PinchOut()
+        Drive(-1000, -1000)
 
-
-        time.sleep(1)
-
-        for i in range(len(leftSpeeds) - 1, -1, -1):
+        for i in range(len(leftSpeeds)):
             Drive(-leftSpeeds[i], -rightSpeeds[i])
-            time.sleep(1)
 
 
             

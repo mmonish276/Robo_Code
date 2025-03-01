@@ -7,7 +7,7 @@ leftSpeeds = []
 rightSpeeds = []
 center_error = 100
 dist_error = 0
-center_threshhold = 5
+center_threshold = 5
 distance_threshold = 50
 
 class Command:
@@ -95,7 +95,7 @@ if __name__ == '__main__':
         Start()
     try:
         #while 1:
-        if (abs(center_error) > threshold):
+        if (abs(center_error) > center_threshold):
             if center_error > 0:
                 Drive(10, -10)
                 check_error()

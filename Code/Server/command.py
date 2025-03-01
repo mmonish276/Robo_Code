@@ -57,6 +57,7 @@ if __name__ == '__main__':
         print("Parameter error: Please assign the device")       # Print an error message if no device is specified
         exit()                                                   # Exit the program
     if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
+        End = 0
         while End != 0:
             test_Drive()                                         # Drive
             DropArm()

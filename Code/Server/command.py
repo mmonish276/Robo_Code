@@ -1,10 +1,14 @@
 from motor import tankMotor              # Import the tankMotor class from the motor module
 from servo import Servo            # Import the Servo class from the servo module
 import time                              # Import the time module for sleep functionality
-import robo_vision                    #openCV vision code
+import cv2                    #openCV vision code
 
 leftSpeeds = []
 rightSpeeds = []
+center_error = 100
+dist_error = 0
+center_threshhold = 5
+distance_threshold = 50
 
 class Command:
     def __init__(self):
@@ -64,10 +68,15 @@ def StopAll():
     servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
     print("\nEnd of program")          # Print an end message
 
-def goto_obj(obj_type, distance, obj_count):          #will use 1st obj seen
-    retreived=0
-    while (retreived < obj_count):
-        if(distance >= 30):             #30cm away or more 
+def check_error():
+    center_error = center_error - 1
+    dist_error = dist_error - 1
+
+    print(center_error)
+
+
+
+
             
 
 
@@ -86,11 +95,16 @@ if __name__ == '__main__':
         Start()
     try:
         #while 1:
+        if (abs(center_error) > threshold):
+            if center_error > 0:
+                Drive(10, -10)
+                check_error()
+            else:
+                Drive(-10, 10)
+                check_error()
         DropArm()
         PinchIn()
         RaiseArm()
-        Drive(-1000, -1000)
-        Drive(-1000, 1000)
         PinchOut()
 
 

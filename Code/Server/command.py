@@ -69,10 +69,11 @@ def StopAll():
     print("\nEnd of program")          # Print an end message
 
 def check_error():
-    center_error = center_error - 1
-    dist_error = dist_error - 1
+    #center_error = center_error - 1
+    #dist_error = dist_error - 1
+    x = 0
 
-    print(center_error)
+
 
 
 
@@ -97,11 +98,13 @@ if __name__ == '__main__':
         #while 1:
         if (abs(center_error) > center_threshold):
             if center_error > 0:
-                Drive(10, -10)
-                check_error()
+                Drive(100, -100)
+                center_error = center_error - 1
+                print(center_error)
+                #check_error()
             else:
-                Drive(-10, 10)
-                check_error()
+                Drive(-100, 100)
+                #check_error()
         DropArm()
         PinchIn()
         RaiseArm()

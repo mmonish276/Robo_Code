@@ -98,12 +98,12 @@ if __name__ == '__main__':
         while True:
             if (abs(center_error) > center_threshold):
                 if center_error > 0:
-                    Drive(500, -500)
+                    Drive(600, -600)
                     center_error = center_error - 1
                     print(center_error)
                     #check_error()
                 else:
-                    Drive(-500, 500)
+                    Drive(-600, 600)
                     #check_error()
             DropArm()
             PinchIn()

@@ -112,12 +112,12 @@ def test_Servo():
             for i in range(140, 90, -1):
                 servo.setServoAngle('1', i)  # Set servo 1 to angle i
                 time.sleep(0.01)           # Wait for 0.01 seconds
-            for i in range(90, 140, 1):
-                servo.setServoAngle('1', i)  # Set servo 1 to angle i
-                time.sleep(0.01)           # Wait for 0.01 seconds
-            for i in range(150, 90, -1):
-                servo.setServoAngle('0', i)  # Set servo 0 to angle i
-                time.sleep(0.01)           # Wait for 0.01 seconds
+            #for i in range(90, 140, 1):
+            #    servo.setServoAngle('1', i)  # Set servo 1 to angle i
+            #    time.sleep(0.01)           # Wait for 0.01 seconds
+            #for i in range(150, 90, -1):
+            #    servo.setServoAngle('0', i)  # Set servo 0 to angle i
+            #    time.sleep(0.01)           # Wait for 0.01 seconds
     except KeyboardInterrupt:              # Handle keyboard interrupt (Ctrl+C)
         servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
         servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees

@@ -23,10 +23,9 @@ def Pinch():
     import time                        # Import the time module for sleep functionality
     print('Pinching Servo')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
-    #for i in range(90, 140, 1):     #(90, 140, 1)
-    #servo.setServoAngle('0', 140)  # Set servo 0 to angle i
-
-    servo.setServoAngle('0', 150)  # Set the angle for servo 0 to 150°
+    for i in range(90, 150, 1):
+        servo.setServoAngle('0', i)  # Set servo 0 to angle i
+        time.sleep(0.01)           # Wait for 0.01 seconds
     
 
     time.sleep(0.01)           # Wait for 0.01 seconds
@@ -36,11 +35,6 @@ def DropArm():
     import time                        # Import the time module for sleep functionality
     print('Drop Arm')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
-    
-    #for i in range(140, 90, -1): #(140, 90, -1)
-        #print('i:', i)
-    #servo.setServoAngle('1', 90)  # Set servo 1 to angle i
-
     servo.setServoAngle('1', 90)   # Set the angle for servo 1 to 90°
 
     time.sleep(0.01)           # Wait for 0.01 seconds
@@ -51,8 +45,8 @@ def StopAll():
     servo = Servo()
     drive = tankMotor()
     drive.setMotorModel(0,0)
-    #servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
-    #servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
+    servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
+    servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
     print("\nEnd of program")          # Print an end message
 
 
@@ -64,10 +58,9 @@ if __name__ == '__main__':
     if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
         print("Running Command")
     try:
-        while 1:
             #test_Drive()                                         # Drive
-            DropArm()
-            Pinch()
+        DropArm()
+        Pinch()
     except KeyboardInterrupt:
         StopAll()
         

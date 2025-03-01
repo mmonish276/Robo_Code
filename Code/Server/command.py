@@ -12,24 +12,20 @@ class Command:
         self.CMD_SONIC = "CMD_SONIC"
         self.CMD_MODE ="CMD_MODE"
     
-def test_Drive():
-    
+def Drive(leftSpeed, rightSpeed):
     drive = tankMotor()
-    drive.setMotorModel(2000, 0) 
-    print("The car should be moving right")
+    drive.setMotorModel(leftSpeed, rightSpeed) 
+    print("Car should be moving")
     time.sleep(2)
-    drive.setMotorModel(0, 2000)
-    time.sleep(2)
-    print("The car should be moving left")
-
+    
 def PinchIn():
-    print('Pinching Servo')  # Print a start message
+    print('Pinching Servo In')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
     servo.setServoAngle('0', 140)  # Set servo 0 to angle 140
     time.sleep(1)           # Wait for 0.01 seconds
 
 def PinchOut():
-    print('Pinching Servo')  # Print a start message
+    print('Pinching Servo Out')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
     servo.setServoAngle('0', 90)  # Set servo 0 to angle 90
     time.sleep(1)           # Wait for 0.01 seconds
@@ -65,6 +61,7 @@ if __name__ == '__main__':
     try:
             #test_Drive()                                         # Drive
         while 1:
+            Drive(1000, 1000)
             DropArm()
             PinchIn()
             RaiseArm()

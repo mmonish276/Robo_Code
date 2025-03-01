@@ -114,8 +114,8 @@ class Servo:
             self.pwm = HardwareServo(1)  # Use HardwareServo for PCB version 2 and Raspberry Pi version 1
         elif self.pcb_version == 2 and self.pi_version == 2:
             self.pwm = HardwareServo(2)  # Use HardwareServo for PCB version 2 and Raspberry Pi version 2
-        self.pwm.setServoPwm("0", 90)  # Set initial angle for servo 0
-        self.pwm.setServoPwm("1", 140)  # Set initial angle for servo 1
+        #self.pwm.setServoPwm("0", 90)  # Set initial angle for servo 0
+        #self.pwm.setServoPwm("1", 140)  # Set initial angle for servo 1
 
     def angle_range(self, channel, init_angle):
         # Ensure the angle is within the valid range for the specified channel

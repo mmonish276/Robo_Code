@@ -1,3 +1,8 @@
+from motor import tankMotor              # Import the tankMotor class from the motor module
+from servo import Servo            # Import the Servo class from the servo module
+import time                              # Import the time module for sleep functionality
+
+
 class Command:
     def __init__(self):
         self.CMD_MOTOR = "CMD_MOTOR"
@@ -8,8 +13,7 @@ class Command:
         self.CMD_MODE ="CMD_MODE"
     
 def test_Drive():
-    from motor import tankMotor              # Import the tankMotor class from the motor module
-    import time                              # Import the time module for sleep functionality
+    
     drive = tankMotor()
     drive.setMotorModel(2000, 0) 
     print("The car should be moving right")
@@ -19,20 +23,15 @@ def test_Drive():
     print("The car should be moving left")
 
 def Pinch():
-    from servo import Servo            # Import the Servo class from the servo module
-    import time                        # Import the time module for sleep functionality
     print('Pinching Servo')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
-    for i in range(90, 150, 1):
-        servo.setServoAngle('0', i)  # Set servo 0 to angle i
-        time.sleep(0.01)           # Wait for 0.01 seconds
+    servo.setServoAngle('0', i)  # Set servo 0 to angle i
+    time.sleep(0.01)           # Wait for 0.01 seconds
     
 
     time.sleep(0.01)           # Wait for 0.01 seconds
     
 def DropArm():
-    from servo import Servo            # Import the Servo class from the servo module
-    import time                        # Import the time module for sleep functionality
     print('Drop Arm')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
     servo.setServoAngle('1', 90)   # Set the angle for servo 1 to 90°
@@ -40,13 +39,11 @@ def DropArm():
     time.sleep(0.01)           # Wait for 0.01 seconds
    
 def StopAll():
-    from servo import Servo            # Import the Servo class from the servo module
-    from motor import tankMotor              # Import the tankMotor class from the motor module
     servo = Servo()
     drive = tankMotor()
     drive.setMotorModel(0,0)
-    servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
-    servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
+    #servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
+    #servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
     print("\nEnd of program")          # Print an end message
 
 

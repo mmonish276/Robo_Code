@@ -80,7 +80,7 @@ if __name__ == '__main__':
         # pwm_motor.setMotorModel(0, 0)          # Stop both motors
         # time.sleep(1)                          # Wait for 1 second
 
-        pulse_turn(pwm_motor, "right", 0.2, 2000)  # Short right turn
+        pulse_turn(pwm_motor, "right", 0.1, 2000)  # Short right turn
         # pulse_turn(pwm_motor, "left", 0.2, 2000)   # Short left turn
 
         pwm_motor.close()  # Clean up when done

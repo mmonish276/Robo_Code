@@ -56,7 +56,7 @@ if __name__ == '__main__':
         exit()                                                   # Exit the program
     if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
         print("Running Command")
-        while End != 0:
+        while End != 1:
             print(End)
             test_Drive()                                         # Drive
             DropArm()

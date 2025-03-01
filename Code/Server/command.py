@@ -59,9 +59,8 @@ if __name__ == '__main__':
     if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
         print("Running Command")
     try:
-            #test_Drive()                                         # Drive
         while 1:
-            Drive(1000, 1000)
+            #Drive(1000, 1000)
             DropArm()
             PinchIn()
             RaiseArm()

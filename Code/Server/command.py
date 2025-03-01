@@ -60,9 +60,9 @@ if __name__ == '__main__':
         print("Running Command")
     try:
         while 1:
-            #Drive(1000, 1000)
             DropArm()
             PinchIn()
+            Drive(-1000, -1000)
             RaiseArm()
             PinchOut()
             

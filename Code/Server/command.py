@@ -65,6 +65,7 @@ if __name__ == '__main__':
             RaiseArm()
             Drive(-1000, -1000, 1)
             PinchOut()
+            Drive(-1000, -1000, 5)
             
     except KeyboardInterrupt:
         StopAll()

@@ -6,10 +6,12 @@ class Command:
         self.CMD_ACTION = "CMD_ACTION"
         self.CMD_SONIC = "CMD_SONIC"
         self.CMD_MODE ="CMD_MODE"
+    
+    def testDrive():
+        from motor import tankMotor              # Import the tankMotor class from the motor module
+        import time                              # Import the time module for sleep functionality
+        print("Running command")
         try: 
-            from motor import tankMotor              # Import the tankMotor class from the motor module
-            import time                              # Import the time module for sleep functionality
-            print("Running command")
             drive = tankMotor()
             while True:
                     drive.setMotorModel(2000, 0) 

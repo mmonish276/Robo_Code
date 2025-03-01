@@ -45,7 +45,7 @@ def DropArm():
     try:
         for i in range(140, 90, -1):
             servo.setServoAngle('1', i)  # Set servo 1 to angle i
-            time.sleep(2)           # Wait for 2 seconds
+            time.sleep(0.01)           # Wait for 0.01 seconds
     except KeyboardInterrupt:              # Handle keyboard interrupt (Ctrl+C)
         servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
         servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
@@ -56,13 +56,14 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         print("Parameter error: Please assign the device")       # Print an error message if no device is specified
         exit()                                                   # Exit the program
-    try:
-        if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
-            while True:
-                test_Drive()                                         # Drive
-                DropArm()
-                Pinch()
-    except KeyboardInterrupt:              # Handle keyboard interrupt (Ctrl+C)
+    if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
+        while End != 0:
+            test_Drive()                                         # Drive
+            DropArm()
+            Pinch()
+            if (KeyboardInterrupt):
+                End = 1
+        # Ending Code
         drive.setMotorModel(0,0)
         servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
         servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees

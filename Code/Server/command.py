@@ -110,6 +110,7 @@ if __name__ == '__main__':
             PinchIn()
             RaiseArm()
             PinchOut()
+            pwm_motor= tankMotor()
             pulse_turn(pwm_motor, "right", 0.1, 2000)
 
 

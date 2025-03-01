@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
         for i in range(len(leftSpeeds) - 1, -1, -1):
             Drive(-leftSpeeds[i], -rightSpeeds[i])
-            time.sleep(0.1)
+            time.sleep(1)
 
 
             

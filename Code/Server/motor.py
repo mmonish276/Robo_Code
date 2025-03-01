@@ -63,8 +63,8 @@ class tankMotor:
     def setMotorModel(self, duty1, duty2):
         """Set the duty cycle for both motors and ensure they are within the valid range."""
         duty1, duty2 = self.duty_range(duty1, duty2)  # Clamp the duty cycle values
-        self.left_Wheel(duty1)   # Control the left wheel
-        self.right_Wheel(duty2)  # Control the right wheel
+        self.left_Wheel2(duty1)   # Control the left wheel
+        self.right_Wheel2(duty2)  # Control the right wheel
     
     def close(self):
         """Close the motors to release resources."""

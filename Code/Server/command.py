@@ -30,10 +30,10 @@ def Pinch():
 def DropArm():
     from servo import Servo            # Import the Servo class from the servo module
     import time                        # Import the time module for sleep functionality
-    print('Pinching Servo')  # Print a start message
+    print('Drop Arm')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
     
-    for i in range(140, 90, -1):
+    for i in range(140, 100, -1): #90 before
         print(i)
         servo.setServoAngle('1', i)  # Set servo 1 to angle i
         time.sleep(0.01)           # Wait for 0.01 seconds
@@ -58,6 +58,7 @@ if __name__ == '__main__':
     if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
         print("Running Command")
         while End != 1:
+            servo = Servo()                    # Initialize the Servo instance
             print(End)
             test_Drive()                                         # Drive
             DropArm()

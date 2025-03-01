@@ -71,8 +71,10 @@ if __name__ == '__main__':
         PinchOut()
         Drive(-2000, 0)
 
+        time.sleep(2)
+
         for i in range(len(leftSpeeds) - 1, -1, -1):
-            Drive(-rightSpeeds[i], -leftSpeeds[i])
+            Drive(-leftSpeeds[i], -rightSpeeds[i])
 
 
             

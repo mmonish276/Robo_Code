@@ -69,7 +69,7 @@ if __name__ == '__main__':
         RaiseArm()
         Drive(-1000, -1000)
         PinchOut()
-        Drive(-1000, 0)
+        Drive(-1000, 1000)
 
         time.sleep(2)
 

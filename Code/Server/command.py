@@ -34,6 +34,7 @@ def DropArm():
     servo = Servo()                    # Initialize the Servo instance
     
     for i in range(140, 90, -1):
+        print(i)
         servo.setServoAngle('1', i)  # Set servo 1 to angle i
         time.sleep(0.01)           # Wait for 0.01 seconds
    

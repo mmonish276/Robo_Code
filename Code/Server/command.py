@@ -2,6 +2,8 @@ from motor import tankMotor              # Import the tankMotor class from the m
 from servo import Servo            # Import the Servo class from the servo module
 import time                              # Import the time module for sleep functionality
 
+leftSpeeds = []
+rightSpeeds = []
 
 class Command:
     def __init__(self):
@@ -15,6 +17,8 @@ class Command:
 def Drive(leftSpeed, rightSpeed):
     drive = tankMotor()
     drive.setMotorModel(leftSpeed, rightSpeed) 
+    leftSpeeds.append(leftSpeed)
+    rightSpeeds.append(rightSpeed)
     print("Car should be moving")
     time.sleep(1)
     
@@ -59,13 +63,18 @@ if __name__ == '__main__':
     if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
         print("Running Command")
     try:
-        while 1:
-            DropArm()
-            PinchIn()
-            RaiseArm()
-            Drive(-1000, -1000)
-            PinchOut()
-            Drive(-1000, -1000)
+        #while 1:
+        DropArm()
+        PinchIn()
+        RaiseArm()
+        Drive(-1000, -1000)
+        PinchOut()
+        Drive(-1000, -1000)
+
+        for i in range(len(leftSpeeds)):
+            Drive(-leftSpeeds[i], -rightSpeeds[i])
+
+
             
     except KeyboardInterrupt:
         StopAll()

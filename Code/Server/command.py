@@ -13,16 +13,43 @@ def test_Drive():
     print("Running command")
     try: 
         drive = tankMotor()
-        while True:
-                drive.setMotorModel(2000, 0) 
-                print("The car should be moving right")
-                time.sleep(2)
-                drive.setMotorModel(0, 2000)
-                time.sleep(4)
-                print("The car should be moving left")
+        drive.setMotorModel(2000, 0) 
+        print("The car should be moving right")
+        time.sleep(2)
+        drive.setMotorModel(0, 2000)
+        time.sleep(2)
+        print("The car should be moving left")
     except KeyboardInterrupt:
         drive.setMotorModel(0,0)
         print("End")
+
+def Pinch():
+    from servo import Servo            # Import the Servo class from the servo module
+    import time                        # Import the time module for sleep functionality
+    print('Pinching Servo')  # Print a start message
+    servo = Servo()                    # Initialize the Servo instance
+    try:
+        for i in range(90, 150, 1):
+            servo.setServoAngle('0', i)  # Set servo 0 to angle i
+            time.sleep(0.01)           # Wait for 0.01 seconds
+    except KeyboardInterrupt:              # Handle keyboard interrupt (Ctrl+C)
+        servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
+        servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
+        print("\nEnd of program")          # Print an end message
+    
+def DropArm():
+    from servo import Servo            # Import the Servo class from the servo module
+    import time                        # Import the time module for sleep functionality
+    print('Pinching Servo')  # Print a start message
+    servo = Servo()                    # Initialize the Servo instance
+    try:
+        for i in range(140, 90, -1):
+            servo.setServoAngle('1', i)  # Set servo 1 to angle i
+            time.sleep(0.01)           # Wait for 0.01 seconds
+    except KeyboardInterrupt:              # Handle keyboard interrupt (Ctrl+C)
+        servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
+        servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
+        print("\nEnd of program")          # Print an end message
 
 if __name__ == '__main__':
     import sys
@@ -30,7 +57,11 @@ if __name__ == '__main__':
         print("Parameter error: Please assign the device")       # Print an error message if no device is specified
         exit()                                                   # Exit the program
     if sys.argv[1] == 'Command' or sys.argv[1] == 'command':
-        test_Drive()                                         # Drive
+        while True:
+            test_Drive()                                         # Drive
+            DropArm()
+            Pinch()
+
           
 
 

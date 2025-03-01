@@ -95,27 +95,27 @@ if __name__ == '__main__':
         print("Running Command")
         Start()
     try:
-        #while 1:
-        if (abs(center_error) > center_threshold):
-            if center_error > 0:
-                Drive(100, -100)
-                center_error = center_error - 1
-                print(center_error)
-                #check_error()
-            else:
-                Drive(-100, 100)
-                #check_error()
-        DropArm()
-        PinchIn()
-        RaiseArm()
-        PinchOut()
+        while True:
+            if (abs(center_error) > center_threshold):
+                if center_error > 0:
+                    Drive(100, -100)
+                    center_error = center_error - 1
+                    print(center_error)
+                    #check_error()
+                else:
+                    Drive(-100, 100)
+                    #check_error()
+            DropArm()
+            PinchIn()
+            RaiseArm()
+            PinchOut()
 
 
-        time.sleep(1)
-
-        for i in range(len(leftSpeeds) - 1, -1, -1):
-            Drive(-leftSpeeds[i], -rightSpeeds[i])
             time.sleep(1)
+
+            for i in range(len(leftSpeeds) - 1, -1, -1):
+                Drive(-leftSpeeds[i], -rightSpeeds[i])
+                time.sleep(1)
 
 
             

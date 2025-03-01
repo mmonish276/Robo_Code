@@ -22,7 +22,7 @@ def Drive(leftSpeed, rightSpeed):
     leftSpeeds.append(leftSpeed)
     rightSpeeds.append(rightSpeed)
     print("Car should be moving")
-    time.sleep(1)
+    time.sleep(2)
     
 def PinchIn():
     print('Pinching Servo In')  # Print a start message

@@ -51,6 +51,18 @@ def DropArm():
         servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
         print("\nEnd of program")          # Print an end message
 
+def StopAll():
+    from servo import Servo            # Import the Servo class from the servo module
+    from motor import tankMotor              # Import the tankMotor class from the motor module
+    servo = Servo()
+    drive = tankMotor()
+    drive.setMotorModel(0,0)
+    servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
+    servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
+    print("\nEnd of program")          # Print an end message
+
+
+
 if __name__ == '__main__':
     import sys
     if len(sys.argv) < 2:
@@ -65,10 +77,7 @@ if __name__ == '__main__':
             if (KeyboardInterrupt):
                 End = 1
         # Ending Code
-        drive.setMotorModel(0,0)
-        servo.setServoAngle('0', 90)         # Set servo 0 to 90 degrees
-        servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
-        print("\nEnd of program")          # Print an end message
+        StopAll()
        
 
           

@@ -23,8 +23,8 @@ def Pinch():
     import time                        # Import the time module for sleep functionality
     print('Pinching Servo')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
-    for i in range(90, 140, 1):     #(90, 140, 1)
-        servo.setServoAngle('0', i)  # Set servo 0 to angle i
+    #for i in range(90, 140, 1):     #(90, 140, 1)
+        servo.setServoAngle('0', 140)  # Set servo 0 to angle i
         time.sleep(0.01)           # Wait for 0.01 seconds
     
 def DropArm():
@@ -33,9 +33,9 @@ def DropArm():
     print('Drop Arm')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
     
-    for i in range(140, 90, -1): #(140, 90, -1)
-        print('i:', i)
-        servo.setServoAngle('1', i)  # Set servo 1 to angle i
+    #for i in range(140, 90, -1): #(140, 90, -1)
+        #print('i:', i)
+        servo.setServoAngle('1', 90)  # Set servo 1 to angle i
         time.sleep(0.01)           # Wait for 0.01 seconds
    
 def StopAll():

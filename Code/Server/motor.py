@@ -21,24 +21,44 @@ class tankMotor:
             duty2 = -4095    # Cap the value at -4095 if it falls below the minimum
         
         return duty1, duty2  # Return the clamped duty cycle values
+    
+    
+    # def left_Wheel(self, duty):
+    #     """Control the left wheel based on the duty cycle value."""
+    #     if duty > 0:
+    #         self.left_motor.forward(duty / 4096)    # Move the left motor forward
+    #     elif duty < 0:
+    #         self.left_motor.backward(-duty / 4096)  # Move the left motor backward
+    #     else:
+    #         self.left_motor.stop()                  # Stop the left motor
 
-    def left_Wheel(self, duty):
+    # def right_Wheel(self, duty):
+    #     """Control the right wheel based on the duty cycle value."""
+    #     if duty > 0:
+    #         self.right_motor.forward(duty / 4096)    # Move the right motor forward
+    #     elif duty < 0:
+    #         self.right_motor.backward(-duty / 4096)  # Move the right motor backward
+    #     else:
+    #         self.right_motor.stop()                  # Stop the right motor
+
+    def left_Wheel2(self, duty):
         """Control the left wheel based on the duty cycle value."""
         if duty > 0:
-            self.left_motor.forward(duty / 4096)    # Move the left motor forward
+            self.left_motor.forward(duty / 8192)    # Move the left motor forward
         elif duty < 0:
-            self.left_motor.backward(-duty / 4096)  # Move the left motor backward
+            self.left_motor.backward(-duty / 8192)  # Move the left motor backward
         else:
             self.left_motor.stop()                  # Stop the left motor
 
-    def right_Wheel(self, duty):
+    def right_Wheel2(self, duty):
         """Control the right wheel based on the duty cycle value."""
         if duty > 0:
-            self.right_motor.forward(duty / 4096)    # Move the right motor forward
+            self.right_motor.forward(duty / 8192)    # Move the right motor forward
         elif duty < 0:
-            self.right_motor.backward(-duty / 4096)  # Move the right motor backward
+            self.right_motor.backward(-duty / 8192)  # Move the right motor backward
         else:
             self.right_motor.stop()                  # Stop the right motor
+
 
     def setMotorModel(self, duty1, duty2):
         """Set the duty cycle for both motors and ensure they are within the valid range."""

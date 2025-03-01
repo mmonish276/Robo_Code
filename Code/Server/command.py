@@ -32,7 +32,7 @@ def PinchOut():
     print('Pinching Servo')  # Print a start message
     servo = Servo()                    # Initialize the Servo instance
     servo.setServoAngle('0', 90)  # Set servo 0 to angle 90
-    time.sleep(0.01)           # Wait for 0.01 seconds
+    time.sleep(1)           # Wait for 0.01 seconds
     
 def DropArm():
     print('Drop Arm')  # Print a start message
@@ -68,6 +68,7 @@ if __name__ == '__main__':
             DropArm()
             PinchIn()
             RaiseArm()
+            PinchOut()
             
     except KeyboardInterrupt:
         StopAll()

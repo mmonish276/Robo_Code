@@ -62,8 +62,8 @@ if __name__ == '__main__':
         while 1:
             DropArm()
             PinchIn()
-            Drive(-1000, -1000)
             RaiseArm()
+            Drive(-1000, -1000)
             PinchOut()
             
     except KeyboardInterrupt:

@@ -1,5 +1,4 @@
 from motor import tankMotor              # Import the tankMotor class from the motor module
-from motor import pulse_turn
 from servo import Servo            # Import the Servo class from the servo module
 import time                              # Import the time module for sleep functionality
 import cv2                    #openCV vision code

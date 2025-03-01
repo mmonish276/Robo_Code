@@ -75,7 +75,7 @@ def check_error():
     x = 0
 
 
-
+pwm_motor= tankMotor()
 
 
 
@@ -110,7 +110,6 @@ if __name__ == '__main__':
             PinchIn()
             RaiseArm()
             PinchOut()
-            pwm_motor= tankMotor()
             pulse_turn(pwm_motor, "right", 0.1, 2000)
 
 

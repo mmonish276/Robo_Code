@@ -9,7 +9,6 @@ from ultralytics import YOLO
 leftSpeeds = []
 rightSpeeds = []
 center_threshold = 50
-center_distance = 100
 
 class Command:
     def __init__(self):
@@ -90,6 +89,7 @@ def pulse_turn(direction="right", duration=0.2, speed=2000):
     pwm_motor.setMotorModel(0, 0)  # Stop motors after pulse
 
 def get_center():
+        global center_distance
         camera = Camera()
         camera.save_image("center_distance.jpg")  # Save the image with a valid filename
         camera.close()

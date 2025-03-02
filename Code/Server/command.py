@@ -174,21 +174,21 @@ if __name__ == '__main__':
                     get_center()
                     print(center_distance)
                     #check_error()
-
+            center_distance = 100
             Drive(-1000,-1000)
-            # DropArm()
-            # PinchIn()
-            # RaiseArm()
+            DropArm()
+            PinchIn()
+            RaiseArm()
             
-            # time.sleep(1)
+            time.sleep(1)
 
-            # for i in range(len(leftSpeeds) - 1, -1, -1):
-            #     Drive(-leftSpeeds[i], -rightSpeeds[i])
-            #     time.sleep(1)
+            for i in range(len(leftSpeeds) - 1, -1, -1):
+                Drive(-leftSpeeds[i], -rightSpeeds[i])
+                time.sleep(1)
             
-            # Drive(2000,-2000)
-            # PinchOut()
-            # Drive(-2000,2000)
+            Drive(2000,-2000)
+            PinchOut()
+            Drive(-2000,2000)
 
 
             

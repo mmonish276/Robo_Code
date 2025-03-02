@@ -6,7 +6,6 @@ from camera import Camera
 class Dist:
     def __init__(self):
         self.camera = Camera()
-        self.camera.start_image()
         self.camera.save_image("center_distance.jpg")  # Save the image with a valid filename
 
     def get_center(self):

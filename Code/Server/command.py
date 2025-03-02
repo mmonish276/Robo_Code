@@ -166,12 +166,12 @@ if __name__ == '__main__':
 
             while (abs(center_distance) > center_threshold):
                 if center_distance > 0:
-                    pulse_turn("left", 0.1, 2000)
+                    pulse_turn("left", 0.1, 1500)
                     get_center()
                     print(center_distance)
                     #check_error()
                 elif center_distance:
-                    pulse_turn("right", 0.1, 2000)
+                    pulse_turn("right", 0.1, 1500)
                     get_center()
                     print(center_distance)
                     #check_error()

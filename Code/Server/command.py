@@ -110,16 +110,17 @@ MAGNET_ON_DUTY = 8.0
 
 class Electromagnet:
     def __init__(self):
-        self.magnet = HardwareServo(2)
+        self.magnet = HardwareServo(1)
 
-        self.magnet.setServoFrequency("2", 2000)
-        self.magnet.setServoDuty("2", 0)
+        # self.magnet.setServoFrequency("2", 2000)
+        self.magnet.setServoDuty('1', 0)
+        # self.magnet = HardwarePWM(pwm_channel=0, hz=50, chip=2)
 
     def enable(self):
-        self.magnet.setServoDuty("2", MAGNET_ON_DUTY)
+        self.magnet.setServoDuty('1', MAGNET_ON_DUTY)
 
     def disable(self):
-        self.magnet.setServoDuty("2", MAGNET_OFF_DUTY)
+        self.magnet.setServoDuty('1', MAGNET_OFF_DUTY)
 
 
  
@@ -181,7 +182,10 @@ def get_center():
             print(f"Detected {TARGET_CLASS}: Horizontal Distance from center = {direction:.2f} pixels")
             center_distance =  direction  # Returns signed distance (negative for left, positive for right)
 
-    
+# def test_magnet(magnet: Electromagnet):
+#     while True:
+        
+
 
 if __name__ == '__main__':
     import sys
@@ -193,6 +197,7 @@ if __name__ == '__main__':
         Start()
     try:
         magnet = Electromagnet()
+
 
         while True:
             leftSpeeds = []

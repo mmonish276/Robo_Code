@@ -184,7 +184,7 @@ if __name__ == '__main__':
                     print(center_distance)
                     #check_error()
             center_distance = 100
-            Drive(-2000, -2000)
+            pulse_turn("forward", 0.1, 2000)
             time.sleep(1)
             DropArm()
             PinchIn()

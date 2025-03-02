@@ -105,7 +105,7 @@ def get_center():
 
         if image is None:
             raise ValueError("Error: Image not loaded. Check the file path.")
-        else
+        else:
             print('CHAT WE HAVE A DETECTION')
         # Get image dimensions
         h, w, _ = image.shape

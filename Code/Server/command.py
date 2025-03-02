@@ -1,11 +1,13 @@
 from motor import tankMotor              # Import the tankMotor class from the motor module
-from servo import Servo            # Import the Servo class from the servo module
+from servo import Servo, HardwareServo, HardwarePWM            # Import the Servo class from the servo module
 from camera import Camera
 import time                              # Import the time module for sleep functionality
 import cv2
 import numpy as np
 from ultralytics import YOLO
 import RPi.GPIO as GPIO
+
+from rpi_hardware_pwm import HardwarePWM
 
 leftSpeeds = []
 rightSpeeds = []
@@ -103,10 +105,24 @@ def set_gpio_high(pin=18):
     GPIO.setup(pin, GPIO.OUT)  # Set pin as output
     GPIO.output(pin, GPIO.HIGH)  # Set pin HIG
 
-def magnet():
-    magnet = Servo()
-    magnet.setServoPWM(magnet, 2, 100)
+MAGNET_OFF_DUTY = 0.0
+MAGNET_ON_DUTY = 8.0 
 
+class Electromagnet:
+    def __init__(self):
+        self.magnet = HardwareServo(2)
+
+        self.magnet.setServoFrequency("2", 2000)
+        self.magnet.setServoDuty("2", 0)
+
+    def enable(self):
+        self.magnet.setServoDuty("2", MAGNET_ON_DUTY)
+
+    def disable(self):
+        self.magnet.setServoDuty("2", MAGNET_OFF_DUTY)
+
+
+ 
 def get_center():
         global center_distance 
         center_distance = 100
@@ -176,6 +192,8 @@ if __name__ == '__main__':
         print("Running Command")
         Start()
     try:
+        magnet = Electromagnet()
+
         while True:
             leftSpeeds = []
             rightSpeeds = []
@@ -194,6 +212,7 @@ if __name__ == '__main__':
                     get_center()
                     print(center_distance)
                     #check_error()
+            magnet.enable()
             DropArm()
             center_distance = 100
             pulse_turn("forward", 0.5, 1000)
@@ -201,6 +220,7 @@ if __name__ == '__main__':
             
             PinchIn()
             RaiseArm()
+            magnet.disable()
             
             time.sleep(1)
 

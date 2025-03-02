@@ -84,6 +84,8 @@ class HardwareServo:
         if channel == '0':
             self.pwm_gpio12.change_frequency(freq)  # Change frequency for GPIO 12
         elif channel == '1':
+            self.pwm_gpio13.change_frequency(freq)  # Change frequency for GPIO 13
+        elif channel == '2':
             self.pwm_gpio19.change_frequency(freq)  # Change frequency for GPIO 13
 
     def setServoDuty(self, channel, duty):

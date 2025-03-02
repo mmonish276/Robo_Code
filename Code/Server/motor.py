@@ -21,7 +21,8 @@ class tankMotor:
             duty2 = -4095    # Cap the value at -4095 if it falls below the minimum
         
         return duty1, duty2  # Return the clamped duty cycle values
-
+    
+    
     def left_Wheel(self, duty):
         """Control the left wheel based on the duty cycle value."""
         if duty > 0:
@@ -51,6 +52,8 @@ class tankMotor:
         self.left_motor.close()   # Close the left motor
         self.right_motor.close()  # Close the right motor
 
+
+
 # Main program logic follows:
 if __name__ == '__main__':
     import time  # Import the time module for sleep functionality
@@ -58,16 +61,23 @@ if __name__ == '__main__':
     pwm_motor = tankMotor()              # Create an instance of the tankMotor class
 
     try:
-        pwm_motor.setMotorModel(2000, 2000)    # Set both motors to move forward
-        time.sleep(1)                          # Wait for 1 second
-        pwm_motor.setMotorModel(-2000, -2000)  # Set both motors to move backward
-        time.sleep(1)                          # Wait for 1 second
-        pwm_motor.setMotorModel(2000, -2000)   # Turn right(left motor forward, right motor backward)
-        time.sleep(1)                          # Wait for 1 second
-        pwm_motor.setMotorModel(-2000, 2000)   # Turn left(left motor backward, right motor forward)
-        time.sleep(1)                          # Wait for 1 second
-        pwm_motor.setMotorModel(0, 0)          # Stop both motors
-        time.sleep(1)                          # Wait for 1 second
+        # pwm_motor.setMotorModel(2000, 2000)    # Set both motors to move forward
+        # time.sleep(1)                          # Wait for 1 second
+        # pwm_motor.setMotorModel(-2000, -2000)  # Set both motors to move backward
+        # time.sleep(1)                          # Wait for 1 second
+        # pwm_motor.setMotorModel(2000, -2000)   # Turn right(left motor forward, right motor backward)
+        # time.sleep(1)                          # Wait for 1 second
+        # pwm_motor.setMotorModel(-2000, 2000)   # Turn left(left motor backward, right motor forward)
+        # time.sleep(1)                          # Wait for 1 second
+        # pwm_motor.setMotorModel(0, 0)          # Stop both motors
+        # time.sleep(1)                          # Wait for 1 second
+
+        pulse_turn(pwm_motor, "right", 0.1, 2000)  # Short right turn
+        # pulse_turn(pwm_motor, "left", 0.2, 2000)   # Short left turn
+
+        pwm_motor.close()  # Clean up when done
+
     except KeyboardInterrupt:                  # Handle a keyboard interrupt (Ctrl+C)
         pwm_motor.setMotorModel(0, 0)          # Stop both motors
         pwm_motor.close()                      # Close the motors to release resources
+

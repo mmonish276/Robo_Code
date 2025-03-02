@@ -87,7 +87,7 @@ def pulse_turn(direction="right", duration=0.2, speed=2000):
     elif direction == "forward":
          pwm_motor.setMotorModel(-speed, -speed)
     elif direction == "backward":
-    pwm_motor.setMotorModel(speed, speed)
+        pwm_motor.setMotorModel(speed, speed)
         
     time.sleep(duration)  # Run for the specified duration
     pwm_motor.setMotorModel(0, 0)  # Stop motors after pulse

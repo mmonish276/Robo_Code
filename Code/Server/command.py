@@ -1,6 +1,6 @@
 from motor import tankMotor              # Import the tankMotor class from the motor module
 from servo import Servo            # Import the Servo class from the servo module
-from cent_dist import Camera
+from cent_dist import Dist
 import time                              # Import the time module for sleep functionality
 import cv2                    #openCV vision code
 
@@ -110,6 +110,8 @@ if __name__ == '__main__':
             leftSpeeds = []
             rightSpeeds = []
             getCent()
+            print(center_distance)
+
             while (abs(center_distance) > center_threshold):
                 if center_distance > 0:
                     pulse_turn("left", 0.25, 2000)

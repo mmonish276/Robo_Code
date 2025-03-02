@@ -207,9 +207,9 @@ if __name__ == '__main__':
             pulse_turn("backward", 0.5, 1000)
             
             time.sleep(1)
-            Drive(1000,-1000)
+            pulse_turn("right", 1, 2000)
             PinchOut()
-            Drive(-1000,1000)
+            
 
 
             

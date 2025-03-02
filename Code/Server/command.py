@@ -196,7 +196,7 @@ if __name__ == '__main__':
                     #check_error()
             DropArm()
             center_distance = 100
-            pulse_turn("forward", 0.5, 2000)
+            pulse_turn("forward", 0.5, 1000)
             time.sleep(1)
             
             PinchIn()
@@ -204,8 +204,9 @@ if __name__ == '__main__':
             
             time.sleep(1)
 
-            pulse_turn("backward", 0.5, 2000)
+            pulse_turn("backward", 0.5, 1000)
             
+            time.sleep(1)
             Drive(1000,-1000)
             PinchOut()
             Drive(-1000,1000)

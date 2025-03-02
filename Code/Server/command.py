@@ -176,7 +176,7 @@ if __name__ == '__main__':
                     print(center_distance)
                     #check_error()
 
-            Drive(-2000,-2000)
+            Drive(-1000,-1000)
             # DropArm()
             # PinchIn()
             # RaiseArm()

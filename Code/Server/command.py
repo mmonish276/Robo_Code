@@ -1,15 +1,15 @@
 from motor import tankMotor              # Import the tankMotor class from the motor module
 from servo import Servo            # Import the Servo class from the servo module
-from cent_dist import Camera
+from camera import Camera
 import time                              # Import the time module for sleep functionality
-import cv2                    #openCV vision code
+import cv2
+import numpy as np
+from ultralytics import YOLO
+import RPi.GPIO as GPIO
 
 leftSpeeds = []
 rightSpeeds = []
-center_error = 100
-dist_error = 0
-center_threshold = 5
-distance_threshold = 50
+center_threshold = 50
 
 class Command:
     def __init__(self):
@@ -83,20 +83,88 @@ def pulse_turn(direction="right", duration=0.2, speed=2000):
     """Send a short pulse to turn the car."""
     if direction == "right":
         pwm_motor.setMotorModel(speed, -speed)  # Left motor forward, right motor backward (turn right)
-    else:
+  
+    elif direction == "left":
         pwm_motor.setMotorModel(-speed, speed)  # Left motor backward, right motor forward (turn left)
+
+    elif direction == "forward":
+        pwm_motor.setMotorModel(-speed, -speed)
+        time.sleep(0.75)
+    elif direction == "backward":
+        pwm_motor.setMotorModel(speed, speed)
+        time.sleep(0.75)
+    
         
     time.sleep(duration)  # Run for the specified duration
     pwm_motor.setMotorModel(0, 0)  # Stop motors after pulse
 
-def getCent():
-    camera = Camera()
-    camera.getCent()
+def set_gpio_high(pin=18):
+    GPIO.setmode(GPIO.BCM)  # Use Broadcom pin numbering
+    GPIO.setup(pin, GPIO.OUT)  # Set pin as output
+    GPIO.output(pin, GPIO.HIGH)  # Set pin HIG
 
+def magnet():
+    magnet = Servo()
+    magnet.setServoPWM(magnet, 2, 100)
 
+def get_center():
+        global center_distance 
+        center_distance = 100
+        camera = Camera()
+        print("1")
+        camera.start_image()
+        print("1")
+        camera.save_image("center_distance.jpg")  # Save the image with a valid filename
+        print("1")
+        camera.close()
+        print("1")
 
-    
-        
+        # Load the captured image
+        image_path = "center_distance.jpg"
+        image = cv2.imread(image_path)
+
+        if image is None:
+            raise ValueError("Error: Image not loaded. Check the file path.")
+        else:
+            print('CHAT WE HAVE A DETECTION')
+        # Get image dimensions
+        h, w, _ = image.shape
+        center_x = w // 2  # X-coordinate of image center
+
+        # Load YOLO model
+        model = YOLO("my_model.pt")  # Ensure the model path is correct
+
+        # Run YOLO object detection
+        results = model(image)
+
+        # Define the target class
+        TARGET_CLASS = "capacitor"  # Change as needed
+        best_match = None
+        min_distance = float("inf")
+        direction = 0  # Default direction (0 means no object detected)
+
+        # Process detections
+        for result in results:
+            for box in result.boxes:
+                class_id = int(box.cls[0])  # Class index
+                x_min, y_min, x_max, y_max = map(int, box.xyxy[0])  # Bounding box coordinates
+                obj_x = (x_min + x_max) // 2  # Object center X-coordinate
+
+                # Compute signed distance from image center
+                pixel_distance = obj_x - center_x  # Negative = Left, Positive = Right
+
+                # Find the closest object to the center
+                if abs(pixel_distance) < min_distance:
+                    min_distance = abs(pixel_distance)
+                    best_match = (x_min, y_min, x_max, y_max, obj_x)
+                    direction = pixel_distance  # Preserve sign for direction
+
+        # Draw tracking info if an object was found
+        if best_match:
+            x_min, y_min, x_max, y_max, obj_x = best_match
+            print(f"Detected {TARGET_CLASS}: Horizontal Distance from center = {direction:.2f} pixels")
+            center_distance =  direction  # Returns signed distance (negative for left, positive for right)
+
     
 
 if __name__ == '__main__':
@@ -109,28 +177,39 @@ if __name__ == '__main__':
         Start()
     try:
         while True:
-            if (abs(center_error) > center_threshold):
-                if center_error > 0:
-                    Drive(1000, -1000)
-                    center_error = center_error - 1
-                    print(center_error)
+            leftSpeeds = []
+            rightSpeeds = []
+            print('test')
+            get_center()
+            print('test')
+
+            while (abs(center_distance) > center_threshold):
+                if center_distance > 0:
+                    pulse_turn("left", 0.1, 1500)
+                    get_center()
+                    print(center_distance)
                     #check_error()
-                else:
-                    Drive(-1000, 1000)
+                elif center_distance:
+                    pulse_turn("right", 0.1, 1500)
+                    get_center()
+                    print(center_distance)
                     #check_error()
             DropArm()
+            center_distance = 100
+            pulse_turn("forward", 0.5, 1000)
+            time.sleep(1)
+            
             PinchIn()
             RaiseArm()
-            PinchOut()
-            pulse_turn("right", 0.1, 2000)
-            getCent()
-
-
+            
             time.sleep(1)
 
-            for i in range(len(leftSpeeds) - 1, -1, -1):
-                Drive(-leftSpeeds[i], -rightSpeeds[i])
-                time.sleep(1)
+            pulse_turn("backward", 0.5, 1000)
+            
+            time.sleep(1)
+            pulse_turn("right", 1, 2000)
+            PinchOut()
+            
 
 
             

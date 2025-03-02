@@ -20,22 +20,21 @@ class Camera:
     def __init__(self, preview_size=(640, 480), hflip=True, vflip=True, stream_size=(400, 300)):
         self.camera = Picamera2()              # Initialize the Picamera2 object
         self.transform = Transform(hflip=1 if hflip else 0, vflip=1 if vflip else 0)  # Set the transformation for flipping the image
-        preview_config = self.camera.create_preview_configuration(main={"size": preview_size}, transform=self.transform)  # Create the preview configuration
-        self.camera.configure(preview_config)  # Configure the camera with the preview settings
+        #preview_config = self.camera.create_preview_configuration(main={"size": preview_size}, transform=self.transform)  # Create the preview configuration
+        #self.camera.configure(preview_config)  # Configure the camera with the preview settings
         
-        # Configure video stream
-        self.stream_size = stream_size             # Set the size of the video stream
-        self.stream_config = self.camera.create_video_configuration(main={"size": stream_size}, transform=self.transform)  # Create the video configuration
-        self.streaming_output = StreamingOutput()  # Initialize the streaming output object
-        self.streaming = False                     # Initialize the streaming flag
+        # # Configure video stream
+        # self.stream_size = stream_size             # Set the size of the video stream
+        # self.stream_config = self.camera.create_video_configuration(main={"size": stream_size}, transform=self.transform)  # Create the video configuration
+        # self.streaming_output = StreamingOutput()  # Initialize the streaming output object
+        # self.streaming = False                     # Initialize the streaming flag
 
     def start_image(self):
-        self.camera.start_preview(Preview.QTGL)  # Start the camera preview using the QTGL backend
+        #self.camera.start_preview(Preview.QTGL)  # Start the camera preview using the QTGL backend
         self.camera.start()                      # Start the camera
 
     def save_image(self, filename):
         metadata = self.camera.capture_file(filename)  # Capture an image and save it to the specified file
-        return metadata                                # Return the metadata of the captured image
 
     def start_stream(self, filename=None):
         if not self.streaming:
@@ -68,8 +67,8 @@ class Camera:
         self.stop_stream()           # Stop the video recording
 
     def close(self):
-        if self.streaming:
-            self.stop_stream()  # Stop the streaming if it is active
+        #if self.streaming:
+         #   self.stop_stream()  # Stop the streaming if it is active
         self.camera.close()     # Close the camera
 
 if __name__ == '__main__':

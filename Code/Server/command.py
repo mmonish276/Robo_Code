@@ -162,7 +162,6 @@ if __name__ == '__main__':
             print('test')
             get_center()
             print('test')
-            print(center_distance)
 
             while (abs(center_distance) > center_threshold):
                 if center_distance > 0:

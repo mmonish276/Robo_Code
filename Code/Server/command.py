@@ -179,39 +179,36 @@ if __name__ == '__main__':
         while True:
             leftSpeeds = []
             rightSpeeds = []
-            magnet()
-            # print('test')
-            # get_center()
-            # print('test')
+            print('test')
+            get_center()
+            print('test')
 
-            # while (abs(center_distance) > center_threshold):
-            #     if center_distance > 0:
-            #         pulse_turn("left", 0.1, 1500)
-            #         get_center()
-            #         print(center_distance)
-            #         #check_error()
-            #     elif center_distance:
-            #         pulse_turn("right", 0.1, 1500)
-            #         get_center()
-            #         print(center_distance)
-            #         #check_error()
-            # center_distance = 100
-            # pulse_turn("forward", 0.1, 2000)
-            # time.sleep(1)
-            # DropArm()
-            # PinchIn()
-            # RaiseArm()
+            while (abs(center_distance) > center_threshold):
+                if center_distance > 0:
+                    pulse_turn("left", 0.1, 1500)
+                    get_center()
+                    print(center_distance)
+                    #check_error()
+                elif center_distance:
+                    pulse_turn("right", 0.1, 1500)
+                    get_center()
+                    print(center_distance)
+                    #check_error()
+            DropArm()
+            center_distance = 100
+            pulse_turn("forward", 0.5, 2000)
+            time.sleep(1)
             
-            # time.sleep(1)
+            PinchIn()
+            RaiseArm()
+            
+            time.sleep(1)
 
-            # pulse_turn("backward", 1, 2000)
-            # # for i in range(len(leftSpeeds) - 1, -1, -1):
-            # #     Drive(-leftSpeeds[i], -rightSpeeds[i])
-            # #     time.sleep(1)
+            pulse_turn("backward", 0.5, 2000)
             
-            # Drive(1000,-1000)
-            # PinchOut()
-            # Drive(-1000,1000)
+            Drive(1000,-1000)
+            PinchOut()
+            Drive(-1000,1000)
 
 
             

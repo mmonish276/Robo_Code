@@ -23,11 +23,11 @@ class Camera:
         preview_config = self.camera.create_preview_configuration(main={"size": preview_size}, transform=self.transform)  # Create the preview configuration
         self.camera.configure(preview_config)  # Configure the camera with the preview settings
         
-        # Configure video stream
-        self.stream_size = stream_size             # Set the size of the video stream
-        self.stream_config = self.camera.create_video_configuration(main={"size": stream_size}, transform=self.transform)  # Create the video configuration
-        self.streaming_output = StreamingOutput()  # Initialize the streaming output object
-        self.streaming = False                     # Initialize the streaming flag
+        # # Configure video stream
+        # self.stream_size = stream_size             # Set the size of the video stream
+        # self.stream_config = self.camera.create_video_configuration(main={"size": stream_size}, transform=self.transform)  # Create the video configuration
+        # self.streaming_output = StreamingOutput()  # Initialize the streaming output object
+        # self.streaming = False                     # Initialize the streaming flag
 
     def start_image(self):
         self.camera.start_preview(Preview.QTGL)  # Start the camera preview using the QTGL backend

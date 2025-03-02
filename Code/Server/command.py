@@ -110,8 +110,9 @@ if __name__ == '__main__':
         while True:
             leftSpeeds = []
             rightSpeeds = []
-
+            print('test')
             getCent()
+            print('test')
             print(center_distance)
 
             while (abs(center_distance) > center_threshold):

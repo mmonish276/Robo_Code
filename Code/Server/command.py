@@ -2,7 +2,9 @@ from motor import tankMotor              # Import the tankMotor class from the m
 from servo import Servo            # Import the Servo class from the servo module
 from camera import Camera
 import time                              # Import the time module for sleep functionality
-import cv2                    #openCV vision code
+import cv2
+import numpy as np
+from ultralytics import YOLO
 
 leftSpeeds = []
 rightSpeeds = []
@@ -87,10 +89,10 @@ def pulse_turn(direction="right", duration=0.2, speed=2000):
     time.sleep(duration)  # Run for the specified duration
     pwm_motor.setMotorModel(0, 0)  # Stop motors after pulse
 
-def get_center(self):
-        self.camera = Camera()
-        self.camera.save_image("center_distance.jpg")  # Save the image with a valid filename
-        self.camera.close()
+def get_center():
+        camera = Camera()
+        camera.save_image("center_distance.jpg")  # Save the image with a valid filename
+        camera.close()
 
         # Load the captured image
         image_path = "center_distance.jpg"

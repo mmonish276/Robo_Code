@@ -35,7 +35,6 @@ class Camera:
 
     def save_image(self, filename):
         metadata = self.camera.capture_file(filename)  # Capture an image and save it to the specified file
-        return metadata                                # Return the metadata of the captured image
 
     def start_stream(self, filename=None):
         if not self.streaming:

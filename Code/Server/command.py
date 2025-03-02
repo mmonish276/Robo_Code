@@ -127,7 +127,7 @@ def get_center():
         results = model(image)
 
         # Define the target class
-        TARGET_CLASS = "resistor"  # Change as needed
+        TARGET_CLASS = "capacitor"  # Change as needed
         best_match = None
         min_distance = float("inf")
         direction = 0  # Default direction (0 means no object detected)

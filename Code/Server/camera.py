@@ -67,8 +67,8 @@ class Camera:
         self.stop_stream()           # Stop the video recording
 
     def close(self):
-        if self.streaming:
-            self.stop_stream()  # Stop the streaming if it is active
+        #if self.streaming:
+         #   self.stop_stream()  # Stop the streaming if it is active
         self.camera.close()     # Close the camera
 
 if __name__ == '__main__':

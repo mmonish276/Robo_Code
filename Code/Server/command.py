@@ -88,8 +88,8 @@ def pulse_turn(direction="right", duration=0.2, speed=2000):
     pwm_motor.setMotorModel(0, 0)  # Stop motors after pulse
 
 def getCent():
-    camera = Camera()
-    center_distance = camera.getCent()
+    dist = Dist()
+    center_distance = dist.getCent()
 
 
 
@@ -125,19 +125,19 @@ if __name__ == '__main__':
                     #check_error()
 
             Drive(2000,2000)
-            DropArm()
-            PinchIn()
-            RaiseArm()
+            # DropArm()
+            # PinchIn()
+            # RaiseArm()
             
-            time.sleep(1)
+            # time.sleep(1)
 
-            for i in range(len(leftSpeeds) - 1, -1, -1):
-                Drive(-leftSpeeds[i], -rightSpeeds[i])
-                time.sleep(1)
+            # for i in range(len(leftSpeeds) - 1, -1, -1):
+            #     Drive(-leftSpeeds[i], -rightSpeeds[i])
+            #     time.sleep(1)
             
-            Drive(2000,-2000)
-            PinchOut()
-            Drive(-2000,2000)
+            # Drive(2000,-2000)
+            # PinchOut()
+            # Drive(-2000,2000)
 
 
             

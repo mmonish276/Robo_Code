@@ -4,12 +4,11 @@ from ultralytics import YOLO
 from camera import Camera
 
 class Dist:
-    def __init__(self):
+    def get_center(self):
         self.camera = Camera()
         self.camera.save_image("center_distance.jpg")  # Save the image with a valid filename
         self.camera.close()
 
-    def get_center(self):
         # Load the captured image
         image_path = "center_distance.jpg"
         image = cv2.imread(image_path)

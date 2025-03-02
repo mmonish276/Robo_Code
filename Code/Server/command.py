@@ -63,6 +63,9 @@ def StopAll():
     servo.setServoAngle('1', 140)        # Set servo 1 to 140 degrees
     print("\nEnd of program")          # Print an end message
 
+def Capture_Distance:
+    
+
 
 if __name__ == '__main__':
     import sys

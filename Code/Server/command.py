@@ -5,6 +5,7 @@ import time                              # Import the time module for sleep func
 import cv2
 import numpy as np
 from ultralytics import YOLO
+import RPi.GPIO as GPIO
 
 leftSpeeds = []
 rightSpeeds = []
@@ -97,6 +98,15 @@ def pulse_turn(direction="right", duration=0.2, speed=2000):
     time.sleep(duration)  # Run for the specified duration
     pwm_motor.setMotorModel(0, 0)  # Stop motors after pulse
 
+def set_gpio_high(pin=18):
+    GPIO.setmode(GPIO.BCM)  # Use Broadcom pin numbering
+    GPIO.setup(pin, GPIO.OUT)  # Set pin as output
+    GPIO.output(pin, GPIO.HIGH)  # Set pin HIG
+
+def magnet():
+    magnet = Servo()
+    magnet.setServoPWM(magnet, 2, 100)
+
 def get_center():
         global center_distance 
         center_distance = 100
@@ -169,38 +179,39 @@ if __name__ == '__main__':
         while True:
             leftSpeeds = []
             rightSpeeds = []
-            print('test')
-            get_center()
-            print('test')
+            magnet()
+            # print('test')
+            # get_center()
+            # print('test')
 
-            while (abs(center_distance) > center_threshold):
-                if center_distance > 0:
-                    pulse_turn("left", 0.1, 1500)
-                    get_center()
-                    print(center_distance)
-                    #check_error()
-                elif center_distance:
-                    pulse_turn("right", 0.1, 1500)
-                    get_center()
-                    print(center_distance)
-                    #check_error()
-            center_distance = 100
-            pulse_turn("forward", 0.1, 2000)
-            time.sleep(1)
-            DropArm()
-            PinchIn()
-            RaiseArm()
+            # while (abs(center_distance) > center_threshold):
+            #     if center_distance > 0:
+            #         pulse_turn("left", 0.1, 1500)
+            #         get_center()
+            #         print(center_distance)
+            #         #check_error()
+            #     elif center_distance:
+            #         pulse_turn("right", 0.1, 1500)
+            #         get_center()
+            #         print(center_distance)
+            #         #check_error()
+            # center_distance = 100
+            # pulse_turn("forward", 0.1, 2000)
+            # time.sleep(1)
+            # DropArm()
+            # PinchIn()
+            # RaiseArm()
             
-            time.sleep(1)
+            # time.sleep(1)
 
-            pulse_turn("backward", 1, 2000)
-            # for i in range(len(leftSpeeds) - 1, -1, -1):
-            #     Drive(-leftSpeeds[i], -rightSpeeds[i])
-            #     time.sleep(1)
+            # pulse_turn("backward", 1, 2000)
+            # # for i in range(len(leftSpeeds) - 1, -1, -1):
+            # #     Drive(-leftSpeeds[i], -rightSpeeds[i])
+            # #     time.sleep(1)
             
-            Drive(1000,-1000)
-            PinchOut()
-            Drive(-1000,1000)
+            # Drive(1000,-1000)
+            # PinchOut()
+            # Drive(-1000,1000)
 
 
             

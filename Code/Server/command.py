@@ -82,8 +82,12 @@ def pulse_turn(direction="right", duration=0.2, speed=2000):
     """Send a short pulse to turn the car."""
     if direction == "right":
         pwm_motor.setMotorModel(speed, -speed)  # Left motor forward, right motor backward (turn right)
-    else:
+    elif direction == "left":
         pwm_motor.setMotorModel(-speed, speed)  # Left motor backward, right motor forward (turn left)
+    elif direction == "forward":
+         pwm_motor.setMotorModel(-speed, -speed)
+    elif direction == "backward":
+    pwm_motor.setMotorModel(speed, speed)
         
     time.sleep(duration)  # Run for the specified duration
     pwm_motor.setMotorModel(0, 0)  # Stop motors after pulse
@@ -175,20 +179,21 @@ if __name__ == '__main__':
                     print(center_distance)
                     #check_error()
             center_distance = 100
-            Drive(-1000,-1000)
+            pulse_turn("foward", 1, 2000)
             DropArm()
             PinchIn()
             RaiseArm()
             
             time.sleep(1)
 
-            for i in range(len(leftSpeeds) - 1, -1, -1):
-                Drive(-leftSpeeds[i], -rightSpeeds[i])
-                time.sleep(1)
+            pulse_turn("backward", 1, 2000)
+            # for i in range(len(leftSpeeds) - 1, -1, -1):
+            #     Drive(-leftSpeeds[i], -rightSpeeds[i])
+            #     time.sleep(1)
             
-            Drive(2000,-2000)
+            Drive(1000,-1000)
             PinchOut()
-            Drive(-2000,2000)
+            Drive(-1000,1000)
 
 
             

@@ -5,6 +5,7 @@ import time                              # Import the time module for sleep func
 leftSpeeds = []
 rightSpeeds = []
 object_type=0 #initialized to neither resistor or cap.
+center_distance = 100
 
 class Command:
     def __init__(self):
@@ -14,10 +15,7 @@ class Command:
         self.CMD_ACTION = "CMD_ACTION"
         self.CMD_SONIC = "CMD_SONIC"
         self.CMD_MODE ="CMD_MODE"
-    
-def get_Distance()
-    if object_type ==1
-    `   `
+
 def Drive(leftSpeed, rightSpeed):
     drive = tankMotor()
     drive.setMotorModel(leftSpeed, rightSpeed) 

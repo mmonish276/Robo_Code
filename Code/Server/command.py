@@ -6,10 +6,8 @@ import cv2                    #openCV vision code
 
 leftSpeeds = []
 rightSpeeds = []
-center_error = 100
-dist_error = 0
-center_threshold = 5
-distance_threshold = 50
+center_threshold = 50
+center_distance = 100
 
 class Command:
     def __init__(self):
@@ -91,7 +89,7 @@ def pulse_turn(direction="right", duration=0.2, speed=2000):
 
 def getCent():
     camera = Camera()
-    camera.getCent()
+    center_distance = camera.getCent()
 
 
 
@@ -109,28 +107,35 @@ if __name__ == '__main__':
         Start()
     try:
         while True:
-            if (abs(center_error) > center_threshold):
-                if center_error > 0:
-                    Drive(1000, -1000)
-                    center_error = center_error - 1
-                    print(center_error)
+            leftSpeeds = []
+            rightSpeeds = []
+            getCent()
+            while (abs(center_distance) > center_threshold):
+                if center_distance > 0:
+                    pulse_turn("left", 0.25, 2000)
+                    getCent()
+                    print(center_distance)
                     #check_error()
-                else:
-                    Drive(-1000, 1000)
+                elif center_distance:
+                    pulse_turn("right", 0.25, 2000)
+                    getCent()
+                    print(center_distance)
                     #check_error()
+
+            Drive(2000,2000)
             DropArm()
             PinchIn()
             RaiseArm()
-            PinchOut()
-            pulse_turn("right", 0.1, 2000)
-            getCent()
-
-
+            
             time.sleep(1)
 
             for i in range(len(leftSpeeds) - 1, -1, -1):
                 Drive(-leftSpeeds[i], -rightSpeeds[i])
                 time.sleep(1)
+            
+            Drive(2000,-2000)
+            PinchOut()
+            Drive(-2000,2000)
 
 
             

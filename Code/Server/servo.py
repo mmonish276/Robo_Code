@@ -61,11 +61,11 @@ class HardwareServo:
         if self.pcb_version == 1:
             self.pwm_gpio12 = HardwarePWM(pwm_channel=0, hz=50, chip=0)  # Initialize PWM for GPIO 12 on chip 0
             self.pwm_gpio13 = HardwarePWM(pwm_channel=1, hz=50, chip=0)  # Initialize PWM for GPIO 13 on chip 0
-            self.pwm_gpio18 = HardwarePWM(pwm_channel=2, hz=50, chip=0)  # Initialize PWM for GPIO 18 on chip 0
+            self.pwm_gpio19 = HardwarePWM(pwm_channel=2, hz=50, chip=0)  # Initialize PWM for GPIO 18 on chip 0
         elif self.pcb_version == 2:
             self.pwm_gpio12 = HardwarePWM(pwm_channel=0, hz=50, chip=2)  # Initialize PWM for GPIO 12 on chip 2
             self.pwm_gpio13 = HardwarePWM(pwm_channel=1, hz=50, chip=2)  # Initialize PWM for GPIO 13 on chip 2
-            self.pwm_gpio18 = HardwarePWM(pwm_channel=2, hz=50, chip=2)  # Initialize PWM for GPIO 18 on chip 2
+            self.pwm_gpio19 = HardwarePWM(pwm_channel=2, hz=50, chip=2)  # Initialize PWM for GPIO 18 on chip 2
         self.pwm_gpio12.start(0)  # Start PWM for GPIO 12 with 0% duty cycle
         self.pwm_gpio13.start(0)  # Start PWM for GPIO 13 with 0% duty cycle
         self.pwm_gpio13.start(100)  # Start PWM for GPIO 13 with 0% duty cycle
@@ -77,14 +77,14 @@ class HardwareServo:
         elif channel == '1':
             self.pwm_gpio13.stop()  # Stop PWM for GPIO 13
         elif  channel == '2':
-            self.pwm_gpio18.stop()  # Stop PWM for GPIO 13
+            self.pwm_gpio19.stop()  # Stop PWM for GPIO 13
 
     def setServoFrequency(self, channel, freq):
         # Set the PWM frequency for the specified channel
         if channel == '0':
             self.pwm_gpio12.change_frequency(freq)  # Change frequency for GPIO 12
         elif channel == '1':
-            self.pwm_gpio18.change_frequency(freq)  # Change frequency for GPIO 13
+            self.pwm_gpio19.change_frequency(freq)  # Change frequency for GPIO 13
 
     def setServoDuty(self, channel, duty):
         # Set the PWM duty cycle for the specified channel
@@ -93,7 +93,7 @@ class HardwareServo:
         elif channel == '1':
             self.pwm_gpio13.change_duty_cycle(duty)  # Change duty cycle for GPIO 13
         elif channel == '2':
-            self.pwm_gpio18.change_duty_cycle(duty)  # Change duty cycle for GPIO 18
+            self.pwm_gpio19.change_duty_cycle(duty)  # Change duty cycle for GPIO 18
 
     def map(self, x, in_min, in_max, out_min, out_max):
         # Map a value from one range to another

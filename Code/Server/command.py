@@ -82,16 +82,16 @@ def pulse_turn(direction="right", duration=0.2, speed=2000):
     """Send a short pulse to turn the car."""
     if direction == "right":
         pwm_motor.setMotorModel(speed, -speed)  # Left motor forward, right motor backward (turn right)
-        time.sleep(1)
+  
     elif direction == "left":
         pwm_motor.setMotorModel(-speed, speed)  # Left motor backward, right motor forward (turn left)
-        time.sleep(1)
+
     elif direction == "forward":
          pwm_motor.setMotorModel(-speed, -speed)
-         time.sleep(1)
+
     elif direction == "backward":
         pwm_motor.setMotorModel(speed, speed)
-        time.sleep(1)
+
         
     time.sleep(duration)  # Run for the specified duration
     pwm_motor.setMotorModel(0, 0)  # Stop motors after pulse

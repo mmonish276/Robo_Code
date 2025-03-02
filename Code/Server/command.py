@@ -92,6 +92,8 @@ def get_center():
         global center_distance
         camera = Camera()
         print("1")
+        camera.start_image()
+        print("1")
         camera.save_image("center_distance.jpg")  # Save the image with a valid filename
         print("1")
         camera.close()

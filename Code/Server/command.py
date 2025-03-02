@@ -89,8 +89,7 @@ def pulse_turn(direction="right", duration=0.2, speed=2000):
 
 def getCent():
     dist = Dist()
-    dist.__init__()
-    center_distance = dist.getCent()
+    center_distance = dist.get_center()
 
 
 

@@ -185,6 +185,7 @@ if __name__ == '__main__':
                     #check_error()
             center_distance = 100
             Drive(-2000, -2000)
+            time.sleep(1)
             DropArm()
             PinchIn()
             RaiseArm()

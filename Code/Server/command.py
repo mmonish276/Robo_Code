@@ -93,7 +93,7 @@ def pulse_turn(direction="right", duration=0.2, speed=2000):
     pwm_motor.setMotorModel(0, 0)  # Stop motors after pulse
 
 def get_center():
-        global center_distance
+        global center_distance = 100
         camera = Camera()
         print("1")
         camera.start_image()
